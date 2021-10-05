@@ -1,35 +1,50 @@
-import { useMemo, useCallback } from 'react';
+import { ChangeEvent, useCallback, useMemo } from 'react';
 import { useStoreon } from 'storeon/react';
+import { IEvents, IState } from 'src/store';
+import { GamesQueryParamOrderingEnum } from 'src/types/enums';
+import { SelectList } from 'src/components/common/UI/Select/interfaces';
 
 export const usePresenter = () => {
-  const { dispatch, gameView } = useStoreon('gameView');
-  const platforms = useMemo(() => gameView.platforms, [gameView.platforms]);
+  const {
+    dispatch,
+    gameStore: { platforms },
+  } = useStoreon<IState, IEvents>('gameStore');
+
+  const dispatchGames = useCallback(
+    () => dispatch('game/fetch-games', { ordering: GamesQueryParamOrderingEnum.RATING_UP }),
+    [dispatch],
+  );
 
   const getPlatform = useCallback(
-    event => {
+    (event: ChangeEvent<HTMLSelectElement>) => {
       if (event.target.value === '-1') {
-        dispatch('gameView/set-platformNumber', {
-          value: null,
+        dispatch('game/set-platformNumber', {
+          value: '',
         });
         dispatchGames();
       } else {
-        dispatch('gameView/set-platformNumber', {
+        dispatch('game/set-platformNumber', {
           value: event.target.value,
         });
         dispatchGames();
       }
     },
-    [gameView.platforms, gameView.games]
+    [dispatch, dispatchGames],
   );
 
-  const dispatchGames = () =>
-    dispatch('gameView/fetch-games', { query: '-rating' });
-
-  const isVisibleElseOption = true;
+  const platformsList: SelectList[] = useMemo(
+    () =>
+      platforms
+        ? platforms.results.map((platform) => ({
+            id: platform.id,
+            label: platform.name,
+          }))
+        : [],
+    [platforms],
+  );
 
   return {
-    isVisibleElseOption,
-    options: platforms,
-    onChange: getPlatform,
+    selectList: platformsList,
+    onChangeSelect: getPlatform,
   };
 };

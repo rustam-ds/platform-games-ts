@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
-import { useStoreon } from 'storeon/react';
 import { useParams } from 'react-router';
+import { useStoreon } from 'storeon/react';
+import { IEvents, IState } from 'src/store';
 
 export const usePresenter = () => {
   const {
     dispatch,
-    gameView: { game },
-  } = useStoreon('gameView');
-  const { gameId } = useParams();
+    gameStore: { game },
+  } = useStoreon<IState, IEvents>('gameStore');
+  const { gameId } = useParams<{ gameId: string }>();
 
-  useEffect(() => dispatch('gameView/fetch-game', { gameId }), []);
+  useEffect(() => dispatch('game/fetch-game', { gameId }), [dispatch, gameId]);
 
-  useEffect(() => () => dispatch('gameView/set-game', { games: {} }), []);
+  useEffect(() => () => dispatch('game/set-game', { value: null }), [dispatch]);
 
   return {
     game,

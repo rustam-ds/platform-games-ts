@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
 import { useLocales } from 'src/hooks/useLocales';
+import { Props } from './interfaces';
 import { InputStyled } from './styled';
 
-export const Input = ({ className, onChange, value }) => {
+export const Input: FC<Props> = memo(({ className, onChange, value }) => {
   const locales = useLocales();
 
   return (
@@ -13,4 +14,4 @@ export const Input = ({ className, onChange, value }) => {
       className={className}
     />
   );
-};
+});

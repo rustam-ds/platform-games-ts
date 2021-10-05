@@ -1,5 +1,9 @@
 import { components } from './components';
 
-export const locales = {
+export interface Locales {
+  components: typeof components;
+}
+
+export const locales: Locales = {
   components,
 };

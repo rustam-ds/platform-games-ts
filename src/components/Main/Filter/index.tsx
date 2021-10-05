@@ -1,9 +1,10 @@
-import React from 'react';
-import { usePresenter } from './usePresenter';
+import React, { FC } from 'react';
 import { useLocales } from 'src/hooks/useLocales';
+import { usePresenter } from './usePresenter';
+import { Props } from './interfaces';
 import { FilterStyled, TitleStyled, SelectStyled } from './styled';
 
-export const Filter = () => {
+export const Filter: FC<Props> = () => {
   const presenter = usePresenter();
   const locales = useLocales();
 
@@ -11,9 +12,9 @@ export const Filter = () => {
     <FilterStyled>
       <TitleStyled>{locales.components.main.filter.label}</TitleStyled>
       <SelectStyled
-        options={presenter.options}
-        onChange={presenter.onChange}
-        isVisible={presenter.isVisibleElseOption}
+        selectList={presenter.selectList}
+        onChangeSelect={presenter.onChangeSelect}
+        isVisible
       />
     </FilterStyled>
   );

@@ -1,10 +1,16 @@
 import { createStoreon } from 'storeon';
 import { storeonDevtools } from 'storeon/devtools';
-import { app } from './App';
-import { gameView } from 'src/store/GameView';
+import { appStoreModule } from './AppStoreModule';
+import { gameStoreModule } from './GameStoreModule';
+import { IGameEvents, IGameState } from './GameStoreModule/interfaces';
+import { IAppEvents, IAppState } from './AppStoreModule/interfaces';
 
-export const store = createStoreon([
-  app,
-  gameView,
+export interface IState extends IGameState, IAppState {}
+
+export interface IEvents extends IGameEvents, IAppEvents {}
+
+export const store = createStoreon<IState, IEvents>([
+  appStoreModule,
+  gameStoreModule,
   process.env.NODE_ENV !== 'production' && storeonDevtools,
 ]);

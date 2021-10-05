@@ -1,6 +1,7 @@
-import React from 'react';
-import { useLocales } from 'src/hooks/useLocales';
+import React, { FC } from 'react';
+import { arrowLeft, arrowRight } from 'src/assets';
 import { usePresenter } from './usePresenter';
+import { Props } from './interfaces';
 import {
   ArrowLeftStyled,
   ArrowRightStyled,
@@ -9,25 +10,25 @@ import {
   WrapperStyled,
 } from './styled';
 
-export const Slider = ({ images }) => {
-  const locales = useLocales();
-  const presenter = usePresenter(images);
-  const isArrowsVisible = images.length > 1;
+export const Slider: FC<Props> = ({ images }) => {
+  const { isArrowsVisible, indexForSliderImages, showNextImage, showPrevImage } = usePresenter(
+    images.length,
+  );
 
   return (
     <WrapperStyled>
       {isArrowsVisible && (
-        <ArrowLeftStyled onClick={presenter.showPrevImage}>
-          <ArrowStyled src={locales.components.game.slider.arrows.left} />
+        <ArrowLeftStyled onClick={showPrevImage}>
+          <ArrowStyled src={arrowLeft} />
         </ArrowLeftStyled>
       )}
       <ImageStyled
-        src={images[presenter.indexForSliderImages].image_background}
-        alt={images[presenter.indexForSliderImages].name}
+        src={images[indexForSliderImages].image_background}
+        alt={images[indexForSliderImages].name}
       />
       {isArrowsVisible && (
-        <ArrowRightStyled onClick={presenter.showNextImage}>
-          <ArrowStyled src={locales.components.game.slider.arrows.right} />
+        <ArrowRightStyled onClick={showNextImage}>
+          <ArrowStyled src={arrowRight} />
         </ArrowRightStyled>
       )}
     </WrapperStyled>

@@ -1,25 +1,20 @@
-import React from 'react';
+import React, { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocales } from 'src/hooks/useLocales';
-import {
-  CardStyled,
-  TitleStyled,
-  ImgStyled,
-  RateStyled,
-  DateStyled,
-} from './styled';
+import { Props } from './interfaces';
+import { CardStyled, TitleStyled, ImgStyled, RateStyled, DateStyled } from './styled';
 
-export const Card = ({ id, name, image, rate, date }) => {
+export const Card: FC<Props> = memo(({ gameId, name, image, rating, date }) => {
   const locales = useLocales();
 
   return (
     <CardStyled>
-      <Link to={`/game/${id}`}>
+      <Link to={`/game/${gameId}`}>
         <TitleStyled>{name}</TitleStyled>
         <ImgStyled src={image} alt={name} />
-        {rate && (
+        {rating && (
           <RateStyled>
-            {locales.components.main.cards.rateLabel} {rate}
+            {locales.components.main.cards.rateLabel} {rating}
           </RateStyled>
         )}
         {date && (
@@ -30,4 +25,4 @@ export const Card = ({ id, name, image, rate, date }) => {
       </Link>
     </CardStyled>
   );
-};
+});

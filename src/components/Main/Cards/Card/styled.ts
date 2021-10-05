@@ -1,7 +1,7 @@
 import styled, { css } from 'src/theme';
 
 export const CardStyled = styled.div`
-  ${props => css`
+  ${(props) => css`
     width: ${props.theme.sizes.small.card_width}px;
     background: ${props.theme.colors.card_background};
     box-shadow: ${props.theme.boxShadow.card};
@@ -23,13 +23,13 @@ export const CardStyled = styled.div`
 `;
 
 export const TitleStyled = styled.h4`
-  ${props => css`
+  ${(props) => css`
     font-size: ${props.theme.fonts.h4_size}px;
   `}
 `;
 
 export const ImgStyled = styled.img`
-  ${props => css`
+  ${(props) => css`
     display: block;
     width: ${props.theme.sizes.small.card_img_width}px;
     height: ${props.theme.sizes.small.card_img_height}px;
@@ -38,7 +38,7 @@ export const ImgStyled = styled.img`
 `;
 
 export const RateStyled = styled.p`
-  ${props => css`
+  ${(props) => css`
     margin-bottom: ${props.theme.uiPoint * 2}px;
   `}
 `;

@@ -1,21 +1,21 @@
 import styled, { css } from 'src/theme';
-import {Select} from "../../common/UI/Select";
+import { Select } from 'src/components/common/UI/Select';
 
 export const SortStyled = styled.div`
-  ${props => css`
+  ${(props) => css`
     padding-top: ${props.theme.uiPoint * 2}px;
   `}
 `;
 
 export const TitleStyled = styled.h3`
-  ${props => css`
+  ${(props) => css`
     font-size: ${props.theme.fonts.h3_size}px;
     font-weight: ${props.theme.fonts.semiBoldWeight};
   `}
 `;
 
 export const SelectStyled = styled(Select)`
-  ${props => css`
+  ${(props) => css`
     margin-top: ${props.theme.uiPoint}px;
 
     @media screen and ${props.theme.media.desktop} {

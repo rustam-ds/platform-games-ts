@@ -1,19 +1,26 @@
 import { useMemo } from 'react';
 import { useStoreon } from 'storeon/react';
-import { useLocales } from 'src/hooks/useLocales';
+import { IEvents, IState } from 'src/store';
+import { plugGamePic } from 'src/assets';
 
 export const usePresenter = () => {
-  const { gameView } = useStoreon('gameView');
-  const locales = useLocales();
+  const {
+    gameStore: { games },
+  } = useStoreon<IState, IEvents>('gameStore');
 
-  const gamesList = useMemo(() => {
-    return [...gameView.games].map(game => {
-      if (!game.background_image) {
-        game.background_image = locales.components.main.cards.plugPhoto.img;
-      }
-      return game;
-    });
-  }, [gameView.games]);
+  const gamesList = useMemo(
+    () =>
+      games
+        ? games.results.map((game) => ({
+            id: game.id,
+            name: game.name,
+            rating: game.rating,
+            backgroundImage: game.background_image ?? plugGamePic,
+            released: game.released,
+          }))
+        : [],
+    [games],
+  );
 
   return {
     cards: gamesList,

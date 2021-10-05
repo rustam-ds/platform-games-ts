@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocales } from 'src/hooks/useLocales';
 import { routesPath } from 'src/utils/routes/routesPath';
-import {
-  ViewStyled,
-  HeaderStyled,
-  TitleStyled,
-  FooterStyled,
-  InfoStyled,
-} from './styled';
+import { Props } from './interface';
+import { ViewStyled, HeaderStyled, TitleStyled, FooterStyled, InfoStyled } from './styled';
 
-export const Layout = ({ children }) => {
+export const Layout: FC<Props> = ({ children }) => {
   const locales = useLocales();
 
   return (

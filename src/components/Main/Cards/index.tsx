@@ -1,21 +1,22 @@
-import React from 'react';
-import { usePresenter } from './usePresenter';
+import React, { FC } from 'react';
 import { Card } from 'src/components/Main/Cards/Card';
+import { usePresenter } from './usePresenter';
+import { Props } from './interfaces';
 import { CardsStyled } from './styled';
 
-export const Cards = () => {
+export const Cards: FC<Props> = () => {
   const presenter = usePresenter();
 
   return (
     <CardsStyled>
-      {presenter.cards.map(card => (
+      {presenter.cards.map((card) => (
         <Card
           key={card.id}
           name={card.name}
-          rate={card.rating}
-          image={card.background_image}
+          rating={card.rating}
+          image={card.backgroundImage}
           date={card.released}
-          id={card.id}
+          gameId={card.id}
         />
       ))}
     </CardsStyled>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { ErrorBoundary } from 'src/hocs/ErrorBoundary';
-import { Game } from 'src/components/GameItem';
+import { GameItem } from 'src/components/GameItem';
+import { Props } from './interfaces';
 
-export const GamePage = () => (
+export const GamePage: FC<Props> = () => (
   <ErrorBoundary>
-    <Game />
+    <GameItem />
   </ErrorBoundary>
 );

@@ -1,14 +1,12 @@
-import { arrowLeft, arrowRight, plugGamePic } from 'src/assets';
-
 export const components = {
   main: {
     sort: {
       label: 'Сортировать по:',
       options: [
-        { id: 1, name: 'Сначала высокий рейтинг' },
-        { id: 2, name: 'Сначала низкий рейтинг' },
-        { id: 3, name: 'Сначала новые игры' },
-        { id: 4, name: 'Сначала старые игры' },
+        { label: 'Сначала высокий рейтинг' },
+        { label: 'Сначала низкий рейтинг' },
+        { label: 'Сначала новые игры' },
+        { label: 'Сначала старые игры' },
       ],
     },
     filter: {
@@ -22,9 +20,6 @@ export const components = {
     cards: {
       rateLabel: 'Рейтинг:',
       dateLabel: 'Дата релиза:',
-      plugPhoto: {
-        img: plugGamePic,
-      },
       pagination: {
         prev: 'Предыдущая',
         next: 'Следующая',
@@ -33,12 +28,6 @@ export const components = {
   },
   game: {
     linkSiteLabel: 'Перейти на сайт игры:',
-    slider: {
-      arrows: {
-        left: arrowLeft,
-        right: arrowRight,
-      },
-    },
   },
   header: {
     title: 'Платформа игр',

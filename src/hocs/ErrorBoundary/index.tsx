@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Props, State } from './interfaces';
 import { TextStyled } from './styled';
 
-export class ErrorBoundary extends Component {
+export class ErrorBoundary extends Component<Props, State> {
   state = {
     hasError: false,
   };

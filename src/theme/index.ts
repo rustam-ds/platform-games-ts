@@ -7,8 +7,11 @@ const {
   keyframes,
   ThemeProvider,
   createGlobalStyle,
-} = styledComponents;
+} = styledComponents as unknown as styledComponents.ThemedStyledComponentsModule<ThemeInterface>;
+
 const uiPoint = vars.uiPoint;
+
+export type ThemeInterface = typeof vars;
 
 export { css, createGlobalStyle, keyframes, ThemeProvider, vars, uiPoint };
 export default styled;

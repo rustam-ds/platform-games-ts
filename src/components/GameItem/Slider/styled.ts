@@ -1,14 +1,14 @@
 import styled, { css } from 'src/theme';
 
 export const WrapperStyled = styled.div`
-  ${props => css`
+  ${(props) => css`
     position: relative;
     margin: ${props.theme.uiPoint * 2}px 0;
   `}
 `;
 
 export const ImageStyled = styled.img`
-  ${props => css`
+  ${(props) => css`
     width: 100%;
     height: auto;
     margin: auto;
@@ -24,7 +24,7 @@ export const ImageStyled = styled.img`
 `;
 
 const commonArrowStyled = css`
-  ${props => css`
+  ${(props) => css`
     display: none;
     position: absolute;
 

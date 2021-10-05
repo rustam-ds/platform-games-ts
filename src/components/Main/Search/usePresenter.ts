@@ -1,24 +1,28 @@
-import { useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { useStoreon } from 'storeon/react';
+import { IEvents, IState } from 'src/store';
+import { GamesQueryParamOrderingEnum } from 'src/types/enums';
 
 export const usePresenter = () => {
-  const { dispatch, gameView } = useStoreon('gameView');
+  const {
+    dispatch,
+    gameStore: { inputValue },
+  } = useStoreon<IState, IEvents>('gameStore');
 
   const getInputValueAndDispatchIt = useCallback(
-    event => {
-      dispatch('gameView/set-inputValue', {
+    (event: ChangeEvent<HTMLInputElement>) => {
+      dispatch('game/set-inputValue', {
         value: event.target.value,
       });
-      dispatch('gameView/fetch-games', {
-        query: '-rating',
-        search: event.target.value,
+      dispatch('game/fetch-games', {
+        ordering: GamesQueryParamOrderingEnum.RATING_UP,
       });
     },
-    [gameView.platforms, gameView.games]
+    [dispatch],
   );
 
   return {
-    value: gameView.inputValue,
-    onChange: getInputValueAndDispatchIt,
+    value: inputValue,
+    onInputChange: getInputValueAndDispatchIt,
   };
 };

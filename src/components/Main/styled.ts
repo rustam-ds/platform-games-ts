@@ -1,7 +1,7 @@
 import styled, { css } from 'src/theme';
 
 export const ViewStyled = styled.div`
-  ${props => css`
+  ${(props) => css`
     padding: ${props.theme.uiPoint * 2}px 0;
     text-align: center;
 
@@ -12,7 +12,7 @@ export const ViewStyled = styled.div`
 `;
 
 export const OptionsStyled = styled.div`
-  ${props => css`
+  ${(props) => css`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -24,7 +24,7 @@ export const OptionsStyled = styled.div`
 `;
 
 export const ReactPaginateStyled = styled.div`
-  ${props => css`
+  ${(props) => css`
     .pagination {
       color: #0366d6;
 
