@@ -12,18 +12,18 @@ export const usePresenter = () => {
   const getSortedGames = useCallback(
     (event) => {
       switch (Number(event.target.value)) {
-        case 1:
+        case 0:
           dispatch('game/fetch-games', { ordering: GamesQueryParamOrderingEnum.RATING_UP });
           break;
-        case 2:
+        case 1:
           dispatch('game/fetch-games', { ordering: GamesQueryParamOrderingEnum.RATING_DOWN });
           break;
-        case 3:
+        case 2:
           dispatch('game/fetch-games', {
             ordering: GamesQueryParamOrderingEnum.RELEASED_UP,
           });
           break;
-        case 4:
+        case 3:
           dispatch('game/fetch-games', { ordering: GamesQueryParamOrderingEnum.RELEASED_DOWN });
           break;
       }
